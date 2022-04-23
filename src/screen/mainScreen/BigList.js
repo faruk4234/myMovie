@@ -9,41 +9,53 @@ import {
   StyleSheet
 } from 'react-native'
 import BigList from 'react-native-big-list'
+import axios from 'axios'
 import { getImageApi } from '../../const/api'
 
 export const Biglist = ({
-  data, page, setPage, category
-}) => (
-  <View style={styles.container}>
+  api, category
+}) => {
+  const [data, setData] = React.useState(Array)
+  const [page, setPage] = React.useState(1)
 
-    <Text style={styles.headerTextStyle}>
-      ----
-      {category}
-    </Text>
+  React.useEffect(() => {
+    axios
+      .get(api + page)
+      .then((res) => setData([...data, ...res.data.results]))
+  }, [])
 
-    <ScrollView
-      horizontal
-      contentContainerStyle={styles.scroolStyle}
-    >
-      <BigList
-        bounces={false}
-        scrollEnabled={false}
-        numColumns={page * 20}
-        itemHeight={100}
-        data={data}
-        renderItem={renderItem}
-      />
+  return (
+    <View style={styles.container}>
 
-      <TouchableOpacity
-        style={styles.mooreButton}
-        onPress={() => setPage(page + 1)}
+      <Text style={styles.headerTextStyle}>
+        ----
+        {category}
+      </Text>
+
+      <ScrollView
+        horizontal
+        contentContainerStyle={styles.scroolStyle}
       >
-        <Text style={styles.threePointStyle}>...</Text>
+        <BigList
+          bounces={false}
+          scrollEnabled={false}
+          numColumns={page * 20}
+          itemHeight={200}
+          data={data}
+          renderItem={renderItem}
+        />
 
-      </TouchableOpacity>
-    </ScrollView>
-  </View>
-)
+        <TouchableOpacity
+          style={styles.mooreButton}
+          onPress={() => console.log(api)}
+        >
+          <Text style={styles.threePointStyle}>...</Text>
+
+        </TouchableOpacity>
+      </ScrollView>
+    </View>
+  )
+}
 
 const renderItem = ({ item }) => {
   return (
@@ -60,7 +72,6 @@ const renderItem = ({ item }) => {
       <Text style={styles.movieNameText}>
         {item.original_title}
         {' '}
-        sdads
       </Text>
 
     </TouchableOpacity>
@@ -69,6 +80,7 @@ const renderItem = ({ item }) => {
 
 const styles = StyleSheet.create({
   container: {
+    paddingHorizontal: 10,
     paddingTop: 70
   },
   headerTextStyle: {
@@ -77,7 +89,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10
   },
   scroolStyle: {
-    height: 260
+    height: 200
   },
   mooreButton: {
     justifyContent: 'center'
@@ -91,9 +103,11 @@ const styles = StyleSheet.create({
     padding: 10
   },
   pictureStyle: {
-    height: 160,
+    borderWidth: 0.5,
+    backgroundColor: 'pink',
+    height: 150,
     width: 120,
-    borderRadius: 10,
+    borderRadius: 15,
     paddingTop: 20
   },
   movieNameText: {
