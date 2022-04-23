@@ -1,32 +1,33 @@
-import React from "react"
+import React from 'react'
 
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import BottomTab from './BottomStack'
-import DetailScreen  from './movieDetailScreen'
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import DetailScreen from './movieDetailScreen'
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator()
 
+const Screen = () => {
+  return (
+    <NavigationContainer>
 
-const Screen =()=>{
-    return (
-        <NavigationContainer>
+      <Stack.Navigator>
 
-          <Stack.Navigator>
+        <Stack.Screen
+          name="bottomTab"
+          component={BottomTab}
+          options={{ headerShown: false }}
+        />
 
-            <Stack.Screen 
-            name="bottomTab" 
-            component={BottomTab} 
-            options={{headerShown:false}} />
+        <Stack.Screen
+          name="detailScreen"
+          component={DetailScreen}
+        />
 
-            <Stack.Screen 
-            name="detailScreen" 
-            component={DetailScreen} />
+      </Stack.Navigator>
 
-          </Stack.Navigator>
-
-        </NavigationContainer>
-      );
+    </NavigationContainer>
+  )
 }
 
 export default Screen
