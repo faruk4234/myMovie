@@ -17,9 +17,7 @@ export const StandartArrayText = ({ data, category }) => (
       ? data.map((x) => (
         <Text style={styles.subDescriptionTexts}>
           {x.name}
-          {' '}
           ,
-          {' '}
         </Text>
       )) : null}
   </Text>

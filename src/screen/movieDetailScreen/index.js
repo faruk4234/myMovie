@@ -9,8 +9,10 @@ import { getMovieDetailApi, getImageApi } from '../../const/api'
 import { StandartText, StandartArrayText } from './description'
 import heart from '../../assest/hearth.png'
 import emptyHearth from '../../assest/emptyHearth.png'
+import { addFavorites } from '../../redux/action/action'
 
 const DetailScreen = ({ route, navigation }) => {
+
   const [data, setData] = React.useState('')
   const dispatch = useDispatch()
 
@@ -22,7 +24,7 @@ const DetailScreen = ({ route, navigation }) => {
   }, [])
 
   const favoritesButton = () => {
-    dispatch({ type: 'CHECK', movieId: data.id })
+    dispatch(addFavorites(data.id))
   }
 
   navigation.setOptions({
@@ -36,13 +38,11 @@ const DetailScreen = ({ route, navigation }) => {
 
   return (
     <ScrollView style={styles.container}>
-
       <Image
         style={styles.imageStyle}
         source={{ uri: getImageApi + data.poster_path }}
       />
-
-      <View style={{ padding: 12 }}>
+      <View style={styles.textContainer}>
         <StandartText data={data.overview} category="Description :" />
         <Text style={styles.tagline}>{data.tagline}</Text>
         <StandartText data={data.release_date} category="Relase Date :" />
@@ -53,7 +53,6 @@ const DetailScreen = ({ route, navigation }) => {
         <StandartText data={data.vote_average} category="Star 10 /" />
         <StandartArrayText data={data.production_countries} category="production contry :" />
       </View>
-
     </ScrollView>
   )
 }
@@ -61,6 +60,9 @@ const DetailScreen = ({ route, navigation }) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#131722'
+  },
+  textContainer: {
+    padding: 12
   },
   imageStyle: {
     width: '100%',

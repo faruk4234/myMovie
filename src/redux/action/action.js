@@ -1,9 +1,5 @@
-import { useDispatch } from 'react-redux'
+export const addFavorites = (id) => ({ type: 'ADD', movieId: id })
 
-const dispatch = useDispatch()
+export const deleteFavorites = (id) => ({ type: 'DELETE', movieId: id })
 
-export const addFavorites = (id) => dispatch({ type: 'ADD', movieId: id })
-
-export const deleteFavorites = (id) => dispatch({ type: 'DELETE', movieId: id })
-
-export const checkMovie = (id) => dispatch({ type: 'CHECK', movieId: id })
+export const checkMovie = (id) => ({ type: 'CHECK', movieId: id })
