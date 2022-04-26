@@ -1,3 +1,3 @@
-const inital_State = {};
+const inital_State = {}
 
-export const favorites = (state = inital_State, action) => {};
+export const favorites = (state = inital_State, action) => {}

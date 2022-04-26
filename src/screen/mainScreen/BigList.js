@@ -12,9 +12,8 @@ import BigList from 'react-native-big-list'
 import axios from 'axios'
 import { getImageApi } from '../../const/api'
 
-export const Biglist = ({
-  api, category
-}) => {
+export const Biglist = ({ api, category, navigation }) => {
+
   const [data, setData] = React.useState(Array)
   const [page, setPage] = React.useState(1)
 
@@ -22,7 +21,7 @@ export const Biglist = ({
     axios
       .get(api + page)
       .then((res) => setData([...data, ...res.data.results]))
-  }, [])
+  }, [page])
 
   return (
     <View style={styles.container}>
@@ -42,14 +41,14 @@ export const Biglist = ({
           numColumns={page * 20}
           itemHeight={200}
           data={data}
-          renderItem={renderItem}
+          renderItem={(x) => <RenderItem data={x} navigation={navigation} />}
         />
 
         <TouchableOpacity
           style={styles.mooreButton}
-          onPress={() => console.log(api)}
+          onPress={() => setPage(page + 1)}
         >
-          <Text style={styles.threePointStyle}>...</Text>
+          <Text style={styles.threePointStyle}>moore</Text>
 
         </TouchableOpacity>
       </ScrollView>
@@ -57,20 +56,20 @@ export const Biglist = ({
   )
 }
 
-const renderItem = ({ item }) => {
+const RenderItem = ({ data, navigation }) => {
   return (
     <TouchableOpacity
       style={styles.cardStyle}
-      onPress={() => console.log(item)}
+      onPress={() => navigation.navigate('detailScreen', data.item.id)}
     >
 
       <Image
         style={styles.pictureStyle}
-        source={{ uri: getImageApi + item.backdrop_path }}
+        source={{ uri: getImageApi + data.item.backdrop_path }}
       />
 
       <Text style={styles.movieNameText}>
-        {item.original_title}
+        {data.item.original_title}
         {' '}
       </Text>
 
@@ -86,7 +85,8 @@ const styles = StyleSheet.create({
   headerTextStyle: {
     fontSize: 20,
     color: 'pink',
-    paddingLeft: 10
+    paddingLeft: 10,
+    padding: 15
   },
   scroolStyle: {
     height: 200
@@ -95,23 +95,30 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   threePointStyle: {
-    fontSize: 50,
-    marginBottom: 40
+    transform: [{ rotate: '-90deg' }],
+    fontSize: 20,
+    marginBottom: 40,
+    color: 'pink',
+    borderWidth: 0.2,
+    borderColor: 'pink',
+    borderRadius: 15,
+    marginRight: 20,
   },
   cardStyle: {
-    alignItems: 'center',
-    padding: 10
+    paddingHorizontal: 5,
   },
   pictureStyle: {
-    borderWidth: 0.5,
-    backgroundColor: 'pink',
+    borderWidth: 0.2,
+    backgroundColor: 'gray',
     height: 150,
     width: 120,
     borderRadius: 15,
     paddingTop: 20
   },
   movieNameText: {
+    paddingTop: 5,
     textAlign: 'center',
+    color: '#23B19B',
     width: 120
   }
 

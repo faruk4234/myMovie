@@ -10,4 +10,10 @@ export const getPopularMovieApi = `https://api.themoviedb.org/3/movie/popular?ap
 
 export const getTopRatedMovieApi = `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=en-US&page=`
 
+export const getUpcomingMovieApi = `https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}&language=en-US&page=`
+
+export const getSearchMovieApi = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&page=1&include_adult=false&query=`
+
+export const getMovieDetailApi = (movieId) => `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=en-US`
+
 export const getImageApi = 'https://www.themoviedb.org/t/p/w1280/'

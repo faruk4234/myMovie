@@ -1,34 +1,55 @@
 import React from 'react'
 import {
-  View, Text, Image, TouchableOpacity, ScrollView
+  ScrollView,
+  StyleSheet
 } from 'react-native'
-import axios from 'axios'
-import { getTopRatedMovieApi, nowPlayingApi, getPopularMovieApi } from '../../const/api'
+import {
+  getTopRatedMovieApi,
+  nowPlayingApi,
+  getPopularMovieApi,
+  getUpcomingMovieApi
+} from '../../const/api'
 import { Biglist } from './bigList'
 
-const SearchScreen = () => {
+const SearchScreen = ({ navigation }) => {
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>
+    <ScrollView style={styles.container}>
 
       <Biglist
         api={getTopRatedMovieApi}
         category="Top Ranked movie"
+        navigation={navigation}
       />
 
       <Biglist
         api={getPopularMovieApi}
         category="Popular"
+        navigation={navigation}
       />
 
       <Biglist
         api={nowPlayingApi}
         category="Now Playing"
+        navigation={navigation}
+      />
+
+      <Biglist
+        api={getUpcomingMovieApi}
+        category="Upcoming"
+        navigation={navigation}
       />
 
     </ScrollView>
 
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#131722'
+  }
+})
 
 export default SearchScreen
