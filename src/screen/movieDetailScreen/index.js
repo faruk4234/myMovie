@@ -10,9 +10,9 @@ import { StandartText, StandartArrayText } from './description'
 import heart from '../../assest/hearth.png'
 import emptyHearth from '../../assest/emptyHearth.png'
 
-const DetailScreen = ({ route, navigation }, oke) => {
-  const dispatch = useDispatch()
+const DetailScreen = ({ route, navigation }) => {
   const [data, setData] = React.useState('')
+  const dispatch = useDispatch()
 
   React.useEffect(() => {
     axios(getMovieDetailApi(route.params))
@@ -20,17 +20,16 @@ const DetailScreen = ({ route, navigation }, oke) => {
         setData(res.data)
       })
   }, [])
-  dispatch({ type: 'ADD', movieId: 550 })
-  dispatch({ type: 'CHECK', movieId: 550 })
 
   const favoritesButton = () => {
+    dispatch({ type: 'CHECK', movieId: data.id })
   }
 
   navigation.setOptions({
     title: data.original_title,
     headerRight: () => (
       <TouchableOpacity onPress={favoritesButton}>
-        <Image source={emptyHearth} style={{ height: 40, width: 40 }} />
+        <Image source={emptyHearth} style={styles.buttonStyle} />
       </TouchableOpacity>
     )
   })
@@ -70,6 +69,10 @@ const styles = StyleSheet.create({
   tagline: {
     paddingBottom: 50,
     color: 'aqua'
+  },
+  buttonStyle: {
+    height: 40,
+    width: 40
   }
 })
 
