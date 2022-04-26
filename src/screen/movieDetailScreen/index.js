@@ -4,13 +4,14 @@ import {
   View, Text, Image, ScrollView, StyleSheet, TouchableOpacity
 } from 'react-native'
 import axios from 'axios'
+import { useDispatch, useStore } from 'react-redux'
 import { getMovieDetailApi, getImageApi } from '../../const/api'
 import { StandartText, StandartArrayText } from './description'
 import heart from '../../assest/hearth.png'
 import emptyHearth from '../../assest/emptyHearth.png'
 
-const SearchScreen = ({ route, navigation }) => {
-
+const DetailScreen = ({ route, navigation }, oke) => {
+  const dispatch = useDispatch()
   const [data, setData] = React.useState('')
 
   React.useEffect(() => {
@@ -19,9 +20,10 @@ const SearchScreen = ({ route, navigation }) => {
         setData(res.data)
       })
   }, [])
+  dispatch({ type: 'ADD', movieId: 550 })
+  dispatch({ type: 'CHECK', movieId: 550 })
 
   const favoritesButton = () => {
-
   }
 
   navigation.setOptions({
@@ -71,4 +73,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default SearchScreen
+export default DetailScreen

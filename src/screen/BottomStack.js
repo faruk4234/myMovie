@@ -12,7 +12,7 @@ import MainScreen from './mainScreen'
 const Tab = createBottomTabNavigator()
 
 function BottomStack() {
-
+  const icon = { height: 25, width: 25 }
   return (
 
     <Tab.Navigator
@@ -29,7 +29,7 @@ function BottomStack() {
           tabBarIcon: () => (
             <Image
               source={home}
-              style={{ height: 25, width: 25 }}
+              style={icon}
             />
           )
         }}
@@ -43,7 +43,7 @@ function BottomStack() {
           tabBarIcon: () => (
             <Image
               source={search}
-              style={{ height: 25, width: 25 }}
+              style={icon}
             />
           )
         }}
@@ -57,7 +57,7 @@ function BottomStack() {
           tabBarIcon: () => (
             <Image
               source={favovires}
-              style={{ height: 25, width: 25 }}
+              style={icon}
             />
           )
         }}
