@@ -10,7 +10,6 @@ import { addFavorites } from './src/redux/action/action'
 const store = createStore(reducer)
 
 const App = () => {
-  getData().then((x) => console.log(x))
   return (
     <Provider store={store}>
       <Screen />

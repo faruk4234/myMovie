@@ -1,6 +1,6 @@
 /* eslint-disable default-case */
 /* eslint-disable import/prefer-default-export */
-import { storeData, getData } from '../../const/asyncStorage'
+import { storeData } from '../../const/asyncStorage'
 
 const initalState = {
   movies: []

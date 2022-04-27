@@ -1,7 +1,12 @@
 /* eslint-disable react-native/no-raw-text */
 import React from 'react'
 import {
-  View, Text, Image, ScrollView, StyleSheet, TouchableOpacity
+  View,
+  Text,
+  Image,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity
 } from 'react-native'
 import axios from 'axios'
 import { useDispatch, useStore } from 'react-redux'
@@ -10,7 +15,6 @@ import { StandartText, StandartArrayText } from './description'
 import heart from '../../assest/hearth.png'
 import emptyHearth from '../../assest/emptyHearth.png'
 import { addFavorites, deleteFavorites } from '../../redux/action/action'
-import { getData, storeData } from '../../const/asyncStorage'
 
 const DetailScreen = ({ route, navigation }) => {
 
@@ -30,7 +34,9 @@ const DetailScreen = ({ route, navigation }) => {
 
   const favoritesButton = () => {
     // eslint-disable-next-line no-unused-expressions
-    isFavori ? dispatch(deleteFavorites(data.id)) : dispatch(addFavorites(data.id))
+    isFavori
+      ? dispatch(deleteFavorites(data.id))
+      : dispatch(addFavorites(data.id))
     setIsFavori(!isFavori)
   }
 
@@ -48,10 +54,7 @@ const DetailScreen = ({ route, navigation }) => {
 
   return (
     <ScrollView style={styles.container}>
-      <Image
-        style={styles.imageStyle}
-        source={{ uri: getImageApi + data.poster_path }}
-      />
+      <Image style={styles.imageStyle} source={{ uri: getImageApi + data.poster_path }} />
       <View style={styles.textContainer}>
         <StandartText data={data.overview} category="Description :" />
         <Text style={styles.tagline}>{data.tagline}</Text>
