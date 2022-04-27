@@ -9,30 +9,40 @@ import { getMovieDetailApi, getImageApi } from '../../const/api'
 import { StandartText, StandartArrayText } from './description'
 import heart from '../../assest/hearth.png'
 import emptyHearth from '../../assest/emptyHearth.png'
-import { addFavorites } from '../../redux/action/action'
+import { addFavorites, deleteFavorites } from '../../redux/action/action'
+import { getData, storeData } from '../../const/asyncStorage'
 
 const DetailScreen = ({ route, navigation }) => {
 
   const [data, setData] = React.useState('')
+  const [isFavori, setIsFavori] = React.useState(false)
+
   const dispatch = useDispatch()
+  const store = useStore().getState()
 
   React.useEffect(() => {
     axios(getMovieDetailApi(route.params))
       .then((res) => {
         setData(res.data)
+        setIsFavori(store.movies.includes(res.data.id))
       })
   }, [])
 
   const favoritesButton = () => {
-    dispatch(addFavorites(data.id))
+    // eslint-disable-next-line no-unused-expressions
+    isFavori ? dispatch(deleteFavorites(data.id)) : dispatch(addFavorites(data.id))
+    setIsFavori(!isFavori)
   }
 
   navigation.setOptions({
     title: data.original_title,
     headerRight: () => (
-      <TouchableOpacity onPress={favoritesButton}>
-        <Image source={emptyHearth} style={styles.buttonStyle} />
-      </TouchableOpacity>
+      <>
+        <TouchableOpacity onPress={favoritesButton}>
+          <Image source={isFavori ? heart : emptyHearth} style={styles.buttonStyle} />
+        </TouchableOpacity>
+
+      </>
     )
   })
 
