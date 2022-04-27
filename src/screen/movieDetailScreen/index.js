@@ -9,26 +9,26 @@ import {
   TouchableOpacity
 } from 'react-native'
 import axios from 'axios'
-import { useDispatch, useStore } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { getMovieDetailApi, getImageApi } from '../../const/api'
 import { StandartText, StandartArrayText } from './description'
 import heart from '../../assest/hearth.png'
 import emptyHearth from '../../assest/emptyHearth.png'
-import { addFavorites, deleteFavorites } from '../../redux/action/action'
+import { addFavorites, deleteFavorites } from '../../redux/action'
+import { favoritesDataMemo } from '../../redux/selector'
 
 const DetailScreen = ({ route, navigation }) => {
-
+  const movies = useSelector(favoritesDataMemo)
   const [data, setData] = React.useState('')
   const [isFavori, setIsFavori] = React.useState(false)
 
   const dispatch = useDispatch()
-  const store = useStore().getState()
 
   React.useEffect(() => {
     axios(getMovieDetailApi(route.params))
       .then((res) => {
+        setIsFavori(movies.includes(res.data.id))
         setData(res.data)
-        setIsFavori(store.movies.includes(res.data.id))
       })
   }, [])
 

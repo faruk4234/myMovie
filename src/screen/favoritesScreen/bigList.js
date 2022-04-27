@@ -10,25 +10,19 @@ import {
   StyleSheet
 } from 'react-native'
 import BigList from 'react-native-big-list'
-import { useStore } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { getImageApi, getMovieDetailApi } from '../../const/api'
+import { favoritesDataMemo } from '../../redux/selector'
 
 export const Biglist = ({ navigation }) => {
-  const store = useStore().getState()
+  const movies = useSelector(favoritesDataMemo)
 
-  const [data, setData] = React.useState('')
-
-  React.useEffect(() => {
-    setData(store.movies)
-  }, [store.movies])
-
-  console.log(data)
   return (
     <View style={styles.container}>
 
       <BigList
         itemHeight={200}
-        data={data}
+        data={movies}
         renderItem={(x) => <RenderItem data={x} navigation={navigation} />}
       />
     </View>
@@ -36,18 +30,24 @@ export const Biglist = ({ navigation }) => {
 }
 
 const RenderItem = ({ data, navigation }) => {
+  const movies = useSelector(favoritesDataMemo)
 
   const [movieData, setMovieData] = React.useState('')
   React.useEffect(() => {
-    console.log(data.item)
+    console.log(movies)
     axios(getMovieDetailApi(data.item))
       .then((datas) => {
         setMovieData(datas.data)
       })
-  }, [])
+  }, [movies])
 
   const {
-    backdrop_path, original_title, popularity, release_date, id
+    backdrop_path,
+    original_title,
+    popularity,
+    release_date,
+    id,
+    vote_average
   } = movieData
 
   return (
@@ -65,6 +65,11 @@ const RenderItem = ({ data, navigation }) => {
         <Text style={styles.movieNameText}>{original_title}</Text>
         <Text style={styles.descriptionText}>{popularity}</Text>
         <Text style={styles.descriptionText}>{release_date}</Text>
+        <Text style={styles.descriptionText}>
+          Star:
+          {' '}
+          {vote_average}
+        </Text>
       </View>
 
     </TouchableOpacity>

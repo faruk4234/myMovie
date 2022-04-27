@@ -1,6 +1,6 @@
 /* eslint-disable default-case */
 /* eslint-disable import/prefer-default-export */
-import { storeData } from '../../const/asyncStorage'
+import { storeData } from '../const/asyncStorage'
 
 const initalState = {
   movies: []
@@ -14,16 +14,11 @@ export const reducer = (state = initalState, action) => {
   case 'ADD': {
     // eslint-disable-next-line no-param-reassign
     state.movies = [...state.movies, action.id]
-    storeData(JSON.stringify(state))
-    console.log('add')
     return { ...state }
   }
   case 'DELETE': {
     // eslint-disable-next-line no-param-reassign
     state.movies = state.movies.filter((movie) => movie !== (action.id))
-    storeData(JSON.stringify(state))
-    console.log('delete')
-
     return { ...state }
   }
   default: {

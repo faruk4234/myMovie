@@ -1,9 +1,7 @@
 import React from 'react'
 import {
-  View, TextInput, Image, StyleSheet
+  View, Image, StyleSheet
 } from 'react-native'
-import axios from 'axios'
-import { getMovieDetailApi } from '../../const/api'
 import { Biglist } from './bigList'
 
 const SearchScreen = ({ navigation }) => {
@@ -13,7 +11,6 @@ const SearchScreen = ({ navigation }) => {
       <Biglist
         navigation={navigation}
       />
-
       <Image />
     </View>
   )
