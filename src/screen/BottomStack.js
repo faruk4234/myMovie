@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image } from 'react-native'
+import { Image, Platform } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { useSelector } from 'react-redux'
 import home from '../assest/home.png'
@@ -16,18 +16,20 @@ const Tab = createBottomTabNavigator()
 
 function BottomStack() {
   const icon = {
-    height: 20, width: 20, justifyContent: 'center', alignItems: 'center'
+    height: 20, width: 20, justifyContent: 'center', alignItems: 'center', top: (Platform.OS === 'ios') ? 12 : 0
   }
 
   return (
     <Tab.Navigator
       screenOptions={{
         tabBarStyle: {
-          position: 'absolute', borderRadius: 20, bottom: 20, marginHorizontal: 70, backgroundColor: 'yellow', height: 40, overflow: 'hidden', justifyContent: 'center', alignItems: 'center'
+          position: 'absolute', opacity: 0.95, borderRadius: 20, bottom: 20, marginHorizontal: 70, height: 40, backgroundColor: color.primaryGreen, overflow: 'hidden', justifyContent: 'center', alignItems: 'center'
         },
       }}
       tabBarOptions={{
         showLabel: false,
+        justifyContent: 'center',
+        alignItems: 'center'
       }}
     >
 
