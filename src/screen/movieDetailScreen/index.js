@@ -15,19 +15,20 @@ import { StandartText, StandartArrayText } from './description'
 import heart from '../../assest/hearth.png'
 import emptyHearth from '../../assest/emptyHearth.png'
 import { addFavorites, deleteFavorites } from '../../redux/action'
-import { favoritesDataMemo } from '../../redux/selector'
+import { favoritesDataMemo } from '../../redux/selector'
 
 const DetailScreen = ({ route, navigation }) => {
-  const movies = useSelector(favoritesDataMemo)
-  const [data, setData] = React.useState('')
-  const [isFavori, setIsFavori] = React.useState(false)
 
+  const [isFavori, setIsFavori] = React.useState(false)
+  const movies = useSelector(favoritesDataMemo)
+
+  const [data, setData] = React.useState('')
   const dispatch = useDispatch()
 
   React.useEffect(() => {
+    setIsFavori(movies.includes(route.params))
     axios(getMovieDetailApi(route.params))
       .then((res) => {
-        setIsFavori(movies.includes(res.data.id))
         setData(res.data)
       })
   }, [])

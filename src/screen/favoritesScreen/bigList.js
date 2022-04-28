@@ -12,7 +12,7 @@ import {
 import BigList from 'react-native-big-list'
 import { useSelector } from 'react-redux'
 import { getImageApi, getMovieDetailApi } from '../../const/api'
-import { favoritesDataMemo } from '../../redux/selector'
+import { favoritesDataMemo } from '../../redux/selector'
 
 export const Biglist = ({ navigation }) => {
   const movies = useSelector(favoritesDataMemo)
@@ -23,14 +23,13 @@ export const Biglist = ({ navigation }) => {
       <BigList
         itemHeight={200}
         data={movies}
-        renderItem={(x) => <RenderItem data={x} navigation={navigation} />}
+        renderItem={(x) => <RenderItem data={x} movies={movies} navigation={navigation} />}
       />
     </View>
   )
 }
 
-const RenderItem = ({ data, navigation }) => {
-  const movies = useSelector(favoritesDataMemo)
+const RenderItem = ({ data, navigation, movies }) => {
 
   const [movieData, setMovieData] = React.useState('')
   React.useEffect(() => {
@@ -67,7 +66,6 @@ const RenderItem = ({ data, navigation }) => {
         <Text style={styles.descriptionText}>{release_date}</Text>
         <Text style={styles.descriptionText}>
           Star:
-          {' '}
           {vote_average}
         </Text>
       </View>

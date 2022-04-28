@@ -1,13 +1,19 @@
 import React from 'react'
 
-import { createStore } from 'redux'
-import { Provider, useStore, useDispatch } from 'react-redux'
+import { Provider } from 'react-redux'
+import createSagaMiddleware, { runSaga } from 'redux-saga'
+import { createStore, applyMiddleware } from 'redux'
 import { reducer } from './src/redux/reducer'
-import { getData } from './src/const/asyncStorage'
+import Saga from './src/redux/saga'
 import Screen from './src/screen'
-import { addFavorites } from './src/redux/action'
 
-const store = createStore(reducer)
+const sagaMiddleware = createSagaMiddleware()
+// mount it on the Store
+const store = createStore(
+  reducer,
+  applyMiddleware(sagaMiddleware)
+)
+sagaMiddleware.run(Saga)
 
 const App = () => {
   return (

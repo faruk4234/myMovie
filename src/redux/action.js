@@ -1,3 +1,3 @@
-export const addFavorites = (id) => ({ type: 'ADD', id })
+export const addFavorites = (id) => ({ type: 'ADD_DATAS', id })
 
-export const deleteFavorites = (id) => ({ type: 'DELETE', id })
+export const deleteFavorites = (id) => ({ type: 'DELETE_DATAS', id })
