@@ -3,13 +3,22 @@ import {
   ScrollView,
   StyleSheet
 } from 'react-native'
-import {
-  getTopRatedMovieApi,
-  nowPlayingApi,
-  getPopularMovieApi,
-  getUpcomingMovieApi
-} from '../../const/api'
+import { useSelector } from 'react-redux'
 import { Biglist } from './bigList'
+import {
+  getNowPlayingMovies,
+  getUpComingMovies,
+  getTopRankedMovies,
+  getPopularMovies
+} from '../../redux/action'
+import {
+  topRankedDataMemo,
+  popularDataMemo,
+  nowPLayingDataMemo,
+  upComingDataMemo
+} from '../../redux/selector'
+
+import color from '../../const/color'
 
 const SearchScreen = ({ navigation }) => {
 
@@ -17,25 +26,29 @@ const SearchScreen = ({ navigation }) => {
     <ScrollView style={styles.container}>
 
       <Biglist
-        api={getTopRatedMovieApi}
+        data={useSelector(topRankedDataMemo)}
         category="Top Ranked movie"
+        action={getTopRankedMovies}
         navigation={navigation}
       />
 
       <Biglist
-        api={getPopularMovieApi}
+        data={useSelector(popularDataMemo)}
         category="Popular"
+        action={getPopularMovies}
         navigation={navigation}
       />
 
       <Biglist
-        api={nowPlayingApi}
+        data={useSelector(nowPLayingDataMemo)}
+        action={getNowPlayingMovies}
         category="Now Playing"
         navigation={navigation}
       />
 
       <Biglist
-        api={getUpcomingMovieApi}
+        data={useSelector(upComingDataMemo)}
+        action={getUpComingMovies}
         category="Upcoming"
         navigation={navigation}
       />
@@ -48,7 +61,7 @@ const SearchScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#131722'
+    backgroundColor: color.primaryBlack
   }
 })
 

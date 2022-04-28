@@ -9,18 +9,18 @@ import {
   StyleSheet
 } from 'react-native'
 import BigList from 'react-native-big-list'
-import axios from 'axios'
+import { useDispatch } from 'react-redux'
 import { getImageApi } from '../../const/api'
+import color from '../../const/color'
 
-export const Biglist = ({ api, category, navigation }) => {
-
-  const [data, setData] = React.useState(Array)
+export const Biglist = ({
+  data, category, navigation, action
+}) => {
+  const dispatch = useDispatch()
   const [page, setPage] = React.useState(1)
 
   React.useEffect(() => {
-    axios
-      .get(api + page)
-      .then((res) => setData([...data, ...res.data.results]))
+    dispatch((action(page)))
   }, [page])
 
   return (
@@ -48,7 +48,7 @@ export const Biglist = ({ api, category, navigation }) => {
           style={styles.mooreButton}
           onPress={() => setPage(page + 1)}
         >
-          <Text style={styles.threePointStyle}>moore</Text>
+          <Text style={styles.threePointStyle}>...</Text>
 
         </TouchableOpacity>
       </ScrollView>
@@ -84,9 +84,10 @@ const styles = StyleSheet.create({
   },
   headerTextStyle: {
     fontSize: 20,
-    color: 'pink',
+    color: '#23B19B',
     paddingLeft: 10,
-    padding: 15
+    padding: 15,
+    fontStyle: 'oblique',
   },
   scroolStyle: {
     height: 200
@@ -95,14 +96,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   threePointStyle: {
-    transform: [{ rotate: '-90deg' }],
-    fontSize: 20,
-    marginBottom: 40,
-    color: 'pink',
-    borderWidth: 0.2,
-    borderColor: 'pink',
+    transform: [{ rotate: '-180deg' }],
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontSize: 100,
+    marginBottom: 0,
+    color: '#23B19B',
+    borderColor: '#23B19B',
     borderRadius: 15,
-    marginRight: 20,
   },
   cardStyle: {
     paddingHorizontal: 5,
@@ -118,8 +119,10 @@ const styles = StyleSheet.create({
   movieNameText: {
     paddingTop: 5,
     textAlign: 'center',
-    color: '#23B19B',
-    width: 120
+    color: color.secondryOrange,
+    width: 120,
+    fontStyle: 'oblique',
+
   }
 
 })

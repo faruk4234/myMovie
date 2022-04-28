@@ -14,7 +14,6 @@ const store = createStore(
   applyMiddleware(sagaMiddleware)
 )
 sagaMiddleware.run(Saga)
-
 const App = () => {
   return (
     <Provider store={store}>

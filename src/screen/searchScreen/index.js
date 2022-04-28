@@ -2,19 +2,17 @@ import React from 'react'
 import {
   View, TextInput, Image, StyleSheet
 } from 'react-native'
-import axios from 'axios'
-import { searchMovieApi } from '../../const/api'
+import { useDispatch } from 'react-redux'
 import { Biglist } from './bigList'
+import { getSearchMovies } from '../../redux/action'
 
 const SearchScreen = ({ navigation }) => {
 
   const [value, onChangeText] = React.useState('')
-  const [data, setData] = React.useState('')
 
+  const dispatch = useDispatch()
   React.useEffect(() => {
-    axios
-      .get(searchMovieApi + value)
-      .then((res) => setData(res.data.results))
+    dispatch(getSearchMovies(value))
   }, [value])
 
   return (
@@ -27,7 +25,6 @@ const SearchScreen = ({ navigation }) => {
       />
 
       <Biglist
-        data={data}
         navigation={navigation}
       />
 

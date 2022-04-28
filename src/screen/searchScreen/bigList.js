@@ -9,16 +9,18 @@ import {
   StyleSheet
 } from 'react-native'
 import BigList from 'react-native-big-list'
+import { useSelector } from 'react-redux'
 import { getImageApi } from '../../const/api'
+import { searchingDataMemo } from '../../redux/selector'
 
-export const Biglist = ({ data, navigation }) => {
+export const Biglist = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
 
       <BigList
         itemHeight={200}
-        data={data}
+        data={useSelector(searchingDataMemo)}
         renderItem={(x) => <RenderItem data={x} navigation={navigation} />}
       />
     </View>

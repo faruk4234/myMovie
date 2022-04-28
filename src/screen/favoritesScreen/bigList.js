@@ -33,7 +33,6 @@ const RenderItem = ({ data, navigation, movies }) => {
 
   const [movieData, setMovieData] = React.useState('')
   React.useEffect(() => {
-    console.log(movies)
     axios(getMovieDetailApi(data.item))
       .then((datas) => {
         setMovieData(datas.data)

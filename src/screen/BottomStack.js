@@ -1,6 +1,7 @@
 import React from 'react'
 import { Image } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { useSelector } from 'react-redux'
 import home from '../assest/home.png'
 import search from '../assest/search.png'
 import favovires from '../assest/favrorites.png'
@@ -8,13 +9,13 @@ import favovires from '../assest/favrorites.png'
 import FavoritesScreen from './favoritesScreen'
 import SearchScreen from './searchScreen'
 import MainScreen from './mainScreen'
+import { favoritesDataMemo } from '../redux/selector'
 
 const Tab = createBottomTabNavigator()
-
 function BottomStack() {
   const icon = { height: 25, width: 25 }
-  return (
 
+  return (
     <Tab.Navigator
       tabBarOptions={{
         showLabel: false,
@@ -54,6 +55,7 @@ function BottomStack() {
         component={FavoritesScreen}
         options={{
           headerShown: false,
+          tabBarBadge: (useSelector(favoritesDataMemo).length),
           tabBarIcon: () => (
             <Image
               source={favovires}
