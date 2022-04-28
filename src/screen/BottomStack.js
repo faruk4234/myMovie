@@ -15,9 +15,6 @@ import color from '../const/color'
 const Tab = createBottomTabNavigator()
 
 function BottomStack() {
-  const icon = {
-    height: 30, width: 30, top: (Platform.OS === 'ios') ? 12 : 0
-  }
 
   return (
     <Tab.Navigator
@@ -38,7 +35,7 @@ function BottomStack() {
           tabBarIcon: () => (
             <Image
               source={home}
-              style={icon}
+              style={styles.iconstyle}
             />
           )
         }}
@@ -52,7 +49,7 @@ function BottomStack() {
           tabBarIcon: () => (
             <Image
               source={search}
-              style={icon}
+              style={styles.iconstyle}
             />
           )
         }}
@@ -67,7 +64,7 @@ function BottomStack() {
           tabBarIcon: () => (
             <Image
               source={favovires}
-              style={icon}
+              style={styles.iconstyle}
             />
           )
         }}
@@ -89,6 +86,11 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  iconstyle: {
+    height: 30,
+    width: 30,
+    top: (Platform.OS === 'ios') ? 12 : 0
   }
 })
 

@@ -5,6 +5,7 @@ import {
 import { useDispatch } from 'react-redux'
 import { Biglist } from './bigList'
 import { getSearchMovies } from '../../redux/action'
+import color from '../../const/color'
 
 const SearchScreen = ({ navigation }) => {
 
@@ -37,7 +38,7 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: 30,
     alignItems: 'flex-start',
-    backgroundColor: '#131722'
+    backgroundColor: color.primaryBlack
   },
   searchBar: {
     backgroundColor: 'white',

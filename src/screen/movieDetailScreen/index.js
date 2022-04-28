@@ -45,7 +45,7 @@ const DetailScreen = ({ route, navigation }) => {
   navigation.setOptions({
     backgroundColor: 'red',
     title: data.original_title,
-    headerStyle: { backgroundColor: isFavori ? color.primaryGreen : color.secondryGray },
+    headerStyle: { backgroundColor: isFavori ? color.thirdyOrange : color.primaryGreen },
     headerRight: () => (
       <>
         <TouchableOpacity onPress={favoritesButton}>

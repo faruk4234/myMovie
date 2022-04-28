@@ -1,7 +1,9 @@
 /* eslint-disable no-constant-condition */
 import axios from 'axios'
 import {
-  put, takeEvery, call, all
+  put,
+  takeEvery,
+  call
 } from 'redux-saga/effects'
 
 function* ADD({ id }) {
@@ -21,7 +23,7 @@ function* GET_DATA({ URL, category }) {
     const { data } = yield call(axios, URL)
     yield put({ type: category, datas: data.results })
   } catch (e) {
-    console.log(e)
+    // console.log(e)
   }
 }
 

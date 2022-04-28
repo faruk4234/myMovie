@@ -11,6 +11,7 @@ import {
 import BigList from 'react-native-big-list'
 import { useSelector } from 'react-redux'
 import { getImageApi } from '../../const/api'
+import color from '../../const/color'
 import { searchingDataMemo } from '../../redux/selector'
 
 export const Biglist = ({ navigation }) => {
@@ -75,7 +76,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     alignItems: 'flex-start',
     paddingLeft: 10,
-    color: '#23B19B',
+    color: color.primaryGreen,
     maxWidth: '84%'
   },
   descriptionText: {

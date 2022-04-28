@@ -16,7 +16,10 @@ const Screen = () => {
   React.useEffect(() => {
     getData()
       .then((datas) => {
-        dispatch(getLocalFavorites(datas))
+        // eslint-disable-next-line no-unused-expressions
+        datas
+          ? dispatch(getLocalFavorites(datas))
+          : null
       })
   }, [])
 

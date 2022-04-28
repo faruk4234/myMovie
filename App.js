@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { Provider, useDispatch } from 'react-redux'
-import createSagaMiddleware, { runSaga } from 'redux-saga'
+import { Provider } from 'react-redux'
+import createSagaMiddleware from 'redux-saga'
 import { createStore, applyMiddleware } from 'redux'
 import { reducer } from './src/redux/reducer'
 import Saga from './src/redux/saga'
