@@ -37,7 +37,8 @@ const SearchScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     paddingTop: 30,
-    alignItems: 'flex-start',
+    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: color.primaryBlack
   },
   searchBar: {
