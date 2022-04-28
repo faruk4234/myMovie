@@ -78,10 +78,12 @@ const RenderItem = ({ data, navigation, movies }) => {
 const styles = StyleSheet.create({
   container: {
     paddingTop: 10,
-    paddingHorizontal: 10
+    paddingHorizontal: 10,
+    paddingBottom: 100,
   },
   cardContainer: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    paddingHorizontal: 50
   },
   pictureStyle: {
     borderWidth: 0.2,

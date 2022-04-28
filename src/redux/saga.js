@@ -13,11 +13,8 @@ function* DELETE({ id }) {
 }
 
 function* GET_DATA({ URL, category }) {
-  try {
-    const { data } = yield call(axios, URL)
-    yield put({ type: category, datas: data.results })
-  } catch (e) {
-  }
+  const { data } = yield call(axios, URL)
+  yield put({ type: category, datas: data.results })
 }
 
 export default function* rootSaga() {

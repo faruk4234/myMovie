@@ -1,7 +1,7 @@
 import React from 'react'
 import {
   ScrollView,
-  StyleSheet
+  StyleSheet,
 } from 'react-native'
 import { useSelector } from 'react-redux'
 import { Biglist } from './bigList'
@@ -27,14 +27,14 @@ const SearchScreen = ({ navigation }) => {
 
       <Biglist
         data={useSelector(topRankedDataMemo)}
-        category="Top Ranked movie"
+        category="𝕿𝖔𝖕 𝕽𝖆𝖓𝖐𝖊𝖉 𝕸𝖔𝖛𝖎𝖊"
         action={getTopRankedMovies}
         navigation={navigation}
       />
 
       <Biglist
         data={useSelector(popularDataMemo)}
-        category="Popular"
+        category="𝕻𝖔𝖕𝖚𝖑𝖆𝖗"
         action={getPopularMovies}
         navigation={navigation}
       />
@@ -42,14 +42,14 @@ const SearchScreen = ({ navigation }) => {
       <Biglist
         data={useSelector(nowPLayingDataMemo)}
         action={getNowPlayingMovies}
-        category="Now Playing"
+        category="𝕹𝖔𝖜 𝕻𝖑𝖆𝖞𝖎𝖓𝖌"
         navigation={navigation}
       />
 
       <Biglist
         data={useSelector(upComingDataMemo)}
         action={getUpComingMovies}
-        category="Upcoming"
+        category="𝖀𝖕𝖈𝖔𝖒𝖎𝖓𝖌"
         navigation={navigation}
       />
 
@@ -61,7 +61,7 @@ const SearchScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: color.primaryBlack
+    backgroundColor: color.primaryBlack,
   }
 })
 

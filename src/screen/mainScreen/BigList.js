@@ -26,10 +26,7 @@ export const Biglist = ({
   return (
     <View style={styles.container}>
 
-      <Text style={styles.headerTextStyle}>
-        ----
-        {category}
-      </Text>
+      <Text style={styles.headerTextStyle}>{category}</Text>
 
       <ScrollView
         horizontal
@@ -39,7 +36,7 @@ export const Biglist = ({
           bounces={false}
           scrollEnabled={false}
           numColumns={page * 20}
-          itemHeight={200}
+          itemHeight={210}
           data={data}
           renderItem={(x) => <RenderItem data={x} navigation={navigation} />}
         />
@@ -80,10 +77,11 @@ const RenderItem = ({ data, navigation }) => {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 10,
-    paddingTop: 70
+    paddingTop: 60,
+    bottom: 10
   },
   headerTextStyle: {
-    fontSize: 20,
+    fontSize: 25,
     color: '#23B19B',
     paddingLeft: 10,
     padding: 15,
@@ -102,7 +100,6 @@ const styles = StyleSheet.create({
     fontSize: 100,
     marginBottom: 0,
     color: '#23B19B',
-    borderColor: '#23B19B',
     borderRadius: 15,
   },
   cardStyle: {
@@ -111,7 +108,7 @@ const styles = StyleSheet.create({
   pictureStyle: {
     borderWidth: 0.2,
     backgroundColor: 'gray',
-    height: 150,
+    height: 140,
     width: 120,
     borderRadius: 15,
     paddingTop: 20
@@ -121,7 +118,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: color.secondryOrange,
     width: 120,
-    fontStyle: 'oblique',
+    fontStyle: 'italic',
 
   }
 
