@@ -10,13 +10,22 @@ import FavoritesScreen from './favoritesScreen'
 import SearchScreen from './searchScreen'
 import MainScreen from './mainScreen'
 import { favoritesDataMemo } from '../redux/selector'
+import color from '../const/color'
 
 const Tab = createBottomTabNavigator()
+
 function BottomStack() {
-  const icon = { height: 25, width: 25 }
+  const icon = {
+    height: 20, width: 20, justifyContent: 'center', alignItems: 'center'
+  }
 
   return (
     <Tab.Navigator
+      screenOptions={{
+        tabBarStyle: {
+          position: 'absolute', borderRadius: 20, bottom: 20, marginHorizontal: 70, backgroundColor: 'yellow', height: 40, overflow: 'hidden', justifyContent: 'center', alignItems: 'center'
+        },
+      }}
       tabBarOptions={{
         showLabel: false,
       }}

@@ -77,8 +77,9 @@ const RenderItem = ({ data, navigation }) => {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 10,
-    paddingTop: 60,
-    bottom: 10
+    paddingTop: 45,
+    paddingBottom: 25,
+    bottom: 20
   },
   headerTextStyle: {
     fontSize: 25,

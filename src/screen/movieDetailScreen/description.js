@@ -2,6 +2,7 @@
 /* eslint-disable import/prefer-default-export */
 import React from 'react'
 import { Text, StyleSheet } from 'react-native'
+import color from '../../const/color'
 
 export const StandartText = ({ data, category }) => (
   <Text style={styles.detailsTextStyle}>
@@ -26,12 +27,12 @@ export const StandartArrayText = ({ data, category }) => (
 const styles = StyleSheet.create({
   detailsTextStyle:
     {
-      color: 'aqua',
+      color: color.primaryGreen,
       fontSize: 18,
       paddingBottom: 50
     },
   subDescriptionTexts: {
-    color: 'white'
+    color: color.secondryOrange
   },
 
 })

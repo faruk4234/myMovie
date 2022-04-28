@@ -16,6 +16,7 @@ import heart from '../../assest/hearth.png'
 import emptyHearth from '../../assest/emptyHearth.png'
 import { addFavorites, deleteFavorites } from '../../redux/action'
 import { favoritesDataMemo } from '../../redux/selector'
+import color from '../../const/color'
 
 const DetailScreen = ({ route, navigation }) => {
 
@@ -73,7 +74,7 @@ const DetailScreen = ({ route, navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#131722'
+    backgroundColor: color.primaryBlack
   },
   textContainer: {
     padding: 12
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
   },
   tagline: {
     paddingBottom: 50,
-    color: 'aqua'
+    color: color.thirdyOrange
   },
   buttonStyle: {
     height: 40,
