@@ -6,7 +6,7 @@ import {
   Text,
   ScrollView,
   View,
-  StyleSheet
+  StyleSheet,
 } from 'react-native'
 import BigList from 'react-native-big-list'
 import { useDispatch } from 'react-redux'
@@ -77,19 +77,19 @@ const RenderItem = ({ data, navigation }) => {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 10,
-    paddingTop: 45,
-    paddingBottom: 25,
-    bottom: 20
+    paddingBottom: 0,
+    top: 35,
+    marginBottom: 70,
   },
   headerTextStyle: {
     fontSize: 25,
-    color: '#23B19B',
+    color: color.primaryGreen,
     paddingLeft: 10,
-    padding: 15,
-    fontStyle: 'oblique',
+    paddingHorizontal: 15,
   },
   scroolStyle: {
-    height: 200
+    height: 200,
+    marginVertical: 20
   },
   mooreButton: {
     justifyContent: 'center'
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     fontSize: 100,
     marginBottom: 0,
-    color: '#23B19B',
+    color: color.primaryGreen,
     borderRadius: 15,
   },
   cardStyle: {
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
   },
   pictureStyle: {
     borderWidth: 0.2,
-    backgroundColor: 'gray',
+    backgroundColor: color.secondryGray,
     height: 140,
     width: 120,
     borderRadius: 15,

@@ -1,7 +1,7 @@
 /* eslint-disable no-constant-condition */
 import axios from 'axios'
 import {
-  put, takeEvery, call
+  put, takeEvery, call, all
 } from 'redux-saga/effects'
 
 function* ADD({ id }) {
@@ -10,6 +10,10 @@ function* ADD({ id }) {
 
 function* DELETE({ id }) {
   yield put({ type: 'DELETE', id })
+}
+
+function* GET_LOCAL_DATAS({ datas }) {
+  yield put({ type: 'GET_LOCALS', datas })
 }
 
 function* GET_DATA({ URL, category }) {
@@ -25,5 +29,5 @@ export default function* rootSaga() {
   yield takeEvery('ADD_FAVORI', ADD)
   yield takeEvery('DELETE_FAVORI', DELETE)
   yield takeEvery('GET_DATAS', GET_DATA)
-
+  yield takeEvery('GET_LOCAL_DATAS', GET_LOCAL_DATAS)
 }

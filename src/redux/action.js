@@ -19,3 +19,5 @@ export const getPopularMovies = (page) => ({ type: 'GET_DATAS', URL: getPopularM
 export const getNowPlayingMovies = (page) => ({ type: 'GET_DATAS', URL: nowPlayingApi + page, category: 'ADD_NOWPLAYİNG' })
 
 export const getSearchMovies = (value) => ({ type: 'GET_DATAS', URL: searchMovieApi + value, category: 'SEARCH_MOVİES' })
+
+export const getLocalFavorites = (datas) => ({ type: 'GET_LOCAL_DATAS', datas })

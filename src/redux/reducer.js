@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable default-case */
 /* eslint-disable import/prefer-default-export */
+import { storeData } from '../const/asyncStorage'
 
 const initalState = {
   favori_movies: [],
@@ -17,10 +18,16 @@ export const reducer = (state = initalState, action) => {
   switch (action.type) {
   case 'ADD': {
     state.favori_movies = [...state.favori_movies, action.id]
+    storeData(state.favori_movies)
+    return { ...state }
+  }
+  case 'GET_LOCALS': {
+    state.favori_movies = [...action.datas]
     return { ...state }
   }
   case 'DELETE': {
     state.favori_movies = state.favori_movies.filter((movie) => movie !== (action.id))
+    storeData(state.favori_movies)
     return { ...state }
   }
   case 'ADD_TOP_RANKED': {
